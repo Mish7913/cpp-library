@@ -29,6 +29,13 @@ namespace str {
 	std::wstring str_to_wstr(const std::string& s);
 	std::string wstr_to_str(const std::wstring& ws);
 	std::string substr(std::string str, int pos, int len);
+	std::map <int, std::string> split_to_map(std::string str, std::string sep);
+	
+	std::map <int, std::string> split_to_map(std::string str, std::string sep) {
+		std::map   < int,    std::string  >   list;      int     pos = 0,    lis1 = 0,    lpos = 0;
+		pos  = str.find( sep ); while ( pos != -1 ) { list[lis1] = substr( str, lpos, pos - lpos );
+		lpos = pos   +  1;    lis1  +=  1;    pos  =  str.find( sep,  lpos );  }    return    list;
+	};
 	
 	std::string substr(std::string str, int pos, int len){
 		std::map < int, std::string >  get_char;  int  num_char = 0;   std::string   str_char,   sTmp;
