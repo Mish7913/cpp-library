@@ -30,11 +30,25 @@ namespace str {
 	std::string wstr_to_str(const std::wstring& ws);
 	std::string substr(std::string str, int pos, int len);
 	std::map <int, std::string> split_to_map(std::string str, std::string sep);
+	std::string replace(std::string str, int pos, int len, std::string rep);
 	
 	std::map <int, std::string> split_to_map(std::string str, std::string sep) {
 		std::map   < int,    std::string  >   list;      int     pos = 0,    lis1 = 0,    lpos = 0;
 		pos  = str.find( sep ); while ( pos != -1 ) { list[lis1] = substr( str, lpos, pos - lpos );
 		lpos = pos   +  1;    lis1  +=  1;    pos  =  str.find( sep,  lpos );  }    return    list;
+	};
+	
+	std::string replace(std::string str, int pos, int len, std::string rep){
+		std::map <int, std::string> get_char; int num_char = 0; std::wstring wstr_char, wstr_get, tmp;
+		std::string   str_char;  std::wstring wsTmp    =   str_to_wstr   (  str  ); wstr_char = wsTmp;
+		for ( int i = 0; i < ( int ) wstr_char.size(); i++ ) { if ( ( int )wstr_char[num_char] < 0 ) {
+		tmp = wstr_char.substr(num_char, 2); std::string sTmp  =  wstr_to_str( tmp ); str_char = sTmp;
+		get_char[i] = str_char; num_char = num_char + 2; } else { tmp = wstr_char.substr(num_char, 1);
+		std::string   sTmp   =   wstr_to_str(  tmp  );  str_char  =  sTmp;   get_char[i]  =  str_char;
+		num_char = num_char + 1; }  if (num_char == (int)wstr_char.size()){break;} } str_char.clear();
+		for (int i = 0; i < pos; i++){ str_char = str_char + get_char[i]; } str_char = str_char + rep;
+		for (int i = pos+len; i < (int) get_char.size(); i++) { str_char  =  str_char + get_char[i]; }
+		return str_char;
 	};
 	
 	std::string substr(std::string str, int pos, int len){
