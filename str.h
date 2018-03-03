@@ -32,6 +32,8 @@ namespace str {
 	std::map <int, std::string> split_to_map(std::string str, std::string sep);
 	std::string replace(std::string str, int pos, int len, std::string rep);
 	
+	int length(std::string str);
+	
 	std::map <int, std::string> split_to_map(std::string str, std::string sep) {
 		std::map   < int,    std::string  >   list;      int     pos = 0,    lis1 = 0,    lpos = 0;
 		pos  = str.find( sep ); while ( pos != -1 ) { list[lis1] = substr( str, lpos, pos - lpos );
@@ -50,6 +52,8 @@ namespace str {
 		for (int i = pos+len; i < (int) get_char.size(); i++) { str_char  =  str_char + get_char[i]; }
 		return str_char;
 	};
+	
+	int length(std::string str){ std::wstring wsTmp = str_to_wstr(str); return wsTmp.length(); }
 	
 	std::string substr(std::string str, int pos, int len){
 		std::map < int, std::string >  get_char;  int  num_char = 0;   std::string   str_char,   sTmp;
