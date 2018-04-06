@@ -28,9 +28,10 @@
 namespace str {
 	std::wstring str_to_wstr(const std::string& s);
 	std::string wstr_to_str(const std::wstring& ws);
-	std::string substr(std::string str, int pos, int len);
-	std::map <int, std::string> split_to_map(std::string str, std::string sep);
-	std::string replace(std::string str, int pos, int len, std::string rep);
+	std::string substr(std::string, int, int);
+	std::map <int, std::string> split_to_map(std::string, std::string);
+	std::string replace(std::string, int, int, std::string);
+	int find(std::string, std::string, int);
 	
 	int length(std::string str);
 	
@@ -38,6 +39,12 @@ namespace str {
 		std::map   < int,    std::string  >   list;      int     pos = 0,    lis1 = 0,    lpos = 0;
 		pos  = str.find( sep ); while ( pos != -1 ) { list[lis1] = substr( str, lpos, pos - lpos );
 		lpos = pos   +  1;    lis1  +=  1;    pos  =  str.find( sep,  lpos );  }    return    list;
+	};
+	
+	int find(std::string str, std::string find_str, int pos = -1){
+		std::wstring  wstr_char = str_to_wstr (str); std::wstring  wfind_str = str_to_wstr (find_str);
+		int  result;   if ( pos  ==  -1 )  {  result  =  (int)wstr_char.find( wfind_str );  }  else  { 
+		result  =  (int)wstr_char.find( wfind_str,  pos ); }  return  result;
 	};
 	
 	std::string replace(std::string str, int pos, int len, std::string rep){
