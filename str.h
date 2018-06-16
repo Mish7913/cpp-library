@@ -40,7 +40,8 @@
         std::map <int, std::string> split_to_map(std::string str, std::string sep) {
             std::map   < int,    std::string  >   list;      int     pos = 0,    lis1 = 0,    lpos = 0;
             pos  = str.find( sep ); while ( pos != -1 ) { list[lis1] = substr( str, lpos, pos - lpos );
-            lpos = pos   +  1;    lis1  +=  1;    pos  =  str.find( sep,  lpos );  }    return    list;
+            lpos = pos+1; lis1+=1; pos=str.find(sep,lpos); } list[lis1] = substr(str,lpos,length(str));
+            return list;
         };
 
         int find(std::string str, std::string find_str, int pos = -1){
