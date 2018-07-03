@@ -34,7 +34,8 @@
         std::map <int, std::string> split_to_map(std::string str, std::string sep);
         std::string replace(std::string str, int pos, int len, std::string rep);
         int find(std::string str, std::string find_str, int pos = -1);
-        std::string delete_html_tags(std::string str, int mode = 0)
+        std::string delete_html_tags(std::string str, int mode = 0);
+        std::string find_replace(std::string str, std::string find_str, std::string rep);
         int length(std::string str);
 
         std::map <int, std::string> split_to_map(std::string str, std::string sep) {
@@ -54,6 +55,13 @@
             std::wstring  wstr_char = str_to_wstr (str); std::wstring  wfind_str = str_to_wstr (find_str);
             int  result;   if ( pos  ==  -1 )  {  result  =  (int)wstr_char.find( wfind_str );  }  else  { 
             result  =  (int)wstr_char.find( wfind_str,  pos ); }  return  result;
+        }
+     
+        std::string find_replace(std::string str, std::string find_str, std::string rep){
+            int  pos = 0;  std::string result;  result = str; while (pos != -1) {
+            pos  =  find (result,  find_str,  pos);  if  (pos  ==  -1) { break; }
+            result = replace( result, pos, length( find_str ), rep ); pos += 1; }
+            return result;
         }
 
         std::string replace(std::string str, int pos, int len, std::string rep){
