@@ -33,29 +33,29 @@
         std::string substr(std::string str, int pos, int len);
         std::map <int, std::string> split_to_map(std::string str, std::string sep);
         std::string replace(std::string str, int pos, int len, std::string rep);
-        int find(std::string str, std::string find_str, int pos = -1);
-        std::string delete_html_tags(std::string str, int mode = 0);
+        std::string delete_html_tags (std::string str, int mode);
         std::string find_replace(std::string str, std::string find_str, std::string rep);
         int length(std::string str);
 
+        int find (std::string str, std::string find_str, int pos = -1){
+            std::wstring  wstr_char = str_to_wstr (str); std::wstring  wfind_str = str_to_wstr (find_str);
+            int  result;   if ( pos  ==  -1 )  {  result  =  (int)wstr_char.find( wfind_str );  }  else  { 
+            result  =  (int)wstr_char.find( wfind_str,  pos ); }  return  result;
+        }
+        
         std::map <int, std::string> split_to_map(std::string str, std::string sep) {
             std::map <int, std::string> list; int pos = 0, lis1 = 0,lpos = 0;pos = find( str, sep, -1 );
             while ( pos != -1 ) { list[lis1] = substr( str, lpos, pos - lpos ); lpos = pos+1; lis1 += 1;
             pos = find(str, sep, lpos); } list[lis1] = substr(str, lpos, length(str)); return list;
         }
      
-        std::string delete_html_tags(std::string str, int mode = 0){
+        std::string delete_html_tags (std::string str, int mode = 0) {
             int pos0, pos1, pos2; std::string result; result = str;  while (pos1 != -1 || pos2 != -1) {
             if (mode  ==  0)  {  pos1  =  find(result, "<");  pos2 =  find(result, ">", pos1); } else {
             pos1 = find(result, "<"); pos0 = find(result, "</", pos1); pos2 = find(result, ">", pos0);}
-            result = replace(result, pos1, pos2-pos1+1, ""); } return result;
+            result = replace(result, pos1, pos2 - pos1 + 1, ""); } return result;
         }
 
-        int find(std::string str, std::string find_str, int pos = -1){
-            std::wstring  wstr_char = str_to_wstr (str); std::wstring  wfind_str = str_to_wstr (find_str);
-            int  result;   if ( pos  ==  -1 )  {  result  =  (int)wstr_char.find( wfind_str );  }  else  { 
-            result  =  (int)wstr_char.find( wfind_str,  pos ); }  return  result;
-        }
      
         std::string find_replace(std::string str, std::string find_str, std::string rep){
             int  pos = 0;  std::string result;  result = str; while (pos != -1) {
