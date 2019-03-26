@@ -4,5 +4,5 @@
 
 ## str.h
 > library for working with multi byte string. C++
-* [Download](https://github.com/Mish7913/cpp-library/raw/master/str.h)
+* [Download](https://github.com/Mish7913/cpp-library/raw/master/str/libstr.zip)
 * [WIKI](https://github.com/Mish7913/cpp-library/wiki/str.h)
