@@ -35,7 +35,9 @@ namespace str {
     std::string delete_html_tags (std::string str, int mode);
     std::string replace(std::string str, int pos, int len, std::string rep);
     std::string find_replace(std::string str, std::string find_str, std::string rep);
+    std::string int_to_str(int num);
     int find (std::string str, std::string find_str, int pos);
     int length(std::string str);
+    int str_to_int(std::string str);
 }
 #endif
