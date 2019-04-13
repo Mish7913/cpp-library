@@ -21,11 +21,18 @@
 #include "str.h"
 
 namespace str {
+    
+    int str_to_int(std::string str){ return int(std::atoi(str.c_str())); }
+
+    int length(std::string str){ std::wstring wsTmp = str_to_wstr(str); return wsTmp.length(); }
+
     int find (std::string str, std::string find_str, int pos = -1){
         std::wstring  wstr_char = str_to_wstr (str); std::wstring  wfind_str = str_to_wstr (find_str);
         int  result;   if ( pos  ==  -1 )  {  result  =  (int)wstr_char.find( wfind_str );  }  else  {
         result  =  (int)wstr_char.find( wfind_str,  pos ); }  return  result;
     }
+
+    std::string int_to_str(int num){ return std::to_string(num); }
 
     std::map <int, std::string> split_to_map(std::string str, std::string sep) {
         std::map <int, std::string> list; int pos = 0, lis1 = 0,lpos = 0;pos = find( str, sep, -1 );
@@ -60,8 +67,6 @@ namespace str {
         for (int i = pos+len; i < (int) get_char.size(); i++) { str_char  =  str_char + get_char[i]; }
         return str_char;
     }
-
-    int length(std::string str){ std::wstring wsTmp = str_to_wstr(str); return wsTmp.length(); }
 
     std::string substr(std::string str, int pos, int len){
         std::map < int, std::string >  get_char;  int  num_char = 0;   std::string   str_char,   sTmp;
