@@ -35,9 +35,9 @@ namespace str {
     std::string int_to_str(int num){ return std::to_string(num); }
 
     std::map <int, std::string> split_to_map(std::string str, std::string sep) {
-        std::map <int, std::string> list; int pos = 0, lis1 = 0,lpos = 0;pos = find( str, sep, -1 );
-        while ( pos != -1 ) { list[lis1] = substr( str, lpos, pos - lpos ); lpos = pos+1; lis1 += 1;
-        pos = find(str, sep, lpos); } list[lis1] = substr(str, lpos, length(str)); return list;
+        std::map <int, std::string> list;   int pos  =  0, lis1 = 0, lpos = 0;  pos  = f ind ( str, sep, -1 );
+        while ( pos != -1 ) { list[lis1] = substr( str, lpos, pos - lpos ); lpos = pos+length(sep); lis1 += 1;
+        pos  =  find ( str, sep, lpos ); } list[lis1]  =  substr ( str, lpos, length ( str ) );  return  list;
     }
 
     std::string delete_html_tags (std::string str, int mode = 0) {
